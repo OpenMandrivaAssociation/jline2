@@ -1,7 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:             jline2
 Version:          2.10
-Release:          8.0%{?dist}
+Release:          8.1%{?dist}
 Summary:          JLine is a Java library for handling console input
 
 License:          BSD and ASL 2.0
@@ -83,10 +83,10 @@ install -pm 644 pom.xml $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
 
 # add_maven_depmap moves actual jar into its %{_javadir}/%{name}-%{version}.jar
 %if 0%{?fedora}
-ln -s %{_javadir}/%{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
 %else
-ln -sf %{_javadir}/%{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+mv $RPM_BUILD_ROOT%{_javadir}/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 %endif
+ln -s %{_javadir}/%{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
 
 %files
 %{_mavenpomdir}/*
